@@ -1,18 +1,23 @@
-const int volumeUpPin = 8;
-const int volumeDownPin =  9;
-bool volumeUpPressed = false;
-bool volumeDownPressed = false;
-int volumeUpState = 0;
-int volumeDownState = 0;
+long t = 0;
+long debounce = 500;
 //DFRobotDFPlayerMini player;
-//int volume = 15;
+//volatile int volume = 15;
 
-void volumeButtonsSetup(){
-  pinMode(volumeUpPin, INPUT);
-  pinMode(volumeUpPin, INPUT);
+void volumeButtonsSetup() {
+  // put your setup code here, to run once:
+
+  pinMode(3, INPUT_PULLUP);
+  pinMode(2, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(3), vol_up, RISING);
+  attachInterrupt(digitalPinToInterrupt(2), vol_down, RISING);
+  player.volume(volume);
 }
 
+
 void volumeButtonsLoop(){
+  //Serial.print(volume);
+  //Serial.print(",");
+  /*
   volumeUpState = digitalRead(volumeUpPin);
   volumeDownState = digitalRead(volumeDownPin);
 
@@ -28,13 +33,34 @@ void volumeButtonsLoop(){
     if (volume < 30)
       volume ++;
     player.volume(volume);
-    //TODO playJoke(/*AAAAAA*/);
+    //TODO playJoke(/*AAAAAA);
   }
   if ((volumeDownPressed) and !(volumeDownState)){
     volumeDownPressed = false;
     if(volume > 0)
       volume --;
     player.volume(volume);
-    //playJoke(/*AAAAAA*/);
+    //playJoke(/*AAAAAA);
+  }*/
+}
+
+
+void vol_up(){
+  if((millis()-t)>debounce){
+    if (volume < 30)
+      volume += 3;
+    player.volume(volume);
+    Serial.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    t = millis();
+  }
+}
+
+void vol_down(){
+  if((millis()-t)>debounce){
+    if(volume > 0)
+      volume -= 3;
+    player.volume(volume);
+    Serial.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+    t=millis();
   }
 }
