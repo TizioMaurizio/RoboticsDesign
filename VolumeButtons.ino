@@ -1,5 +1,5 @@
-long t = 0;
-long debounce = 500;
+long buttonTime = 0;
+long buttonDebounce = 500;
 //DFRobotDFPlayerMini player;
 //volatile int volume = 15;
 
@@ -46,21 +46,21 @@ void volumeButtonsLoop(){
 
 
 void vol_up(){
-  if((millis()-t)>debounce){
+  if((millis()-buttonTime)>buttonDebounce){
     if (volume < 30)
       volume += 3;
     player.volume(volume);
     Serial.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    t = millis();
+    buttonTime = millis();
   }
 }
 
 void vol_down(){
-  if((millis()-t)>debounce){
+  if((millis()-buttonTime)>buttonDebounce){
     if(volume > 0)
       volume -= 3;
     player.volume(volume);
     Serial.println("BBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-    t=millis();
+    buttonTime=millis();
   }
 }

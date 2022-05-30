@@ -69,7 +69,8 @@ void mouthLoop(){
     //Serial.print(",");
     Serial.print(loudness);
     Serial.print(",");
-    Serial.println(threshold * pow(2,(volume - 15) /3));
+    Serial.print(threshold * pow(2,(volume - 15) /3));
+    Serial.print(",");
   }
   if(loudness>threshold * pow(2,(volume - 15) /3)){
   //if(analogValue<600){

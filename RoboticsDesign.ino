@@ -8,8 +8,8 @@ DFRobotDFPlayerMini player; //pin to 5v
 void setup() {
     // Init USB serial port for debugging
     Serial.begin(9600);
+    microphoneSetup();
     mouthSetup();
-    //microphoneSetup();
     //jokesSetup();
     //movementsSetup();
     volumeButtonsSetup();
@@ -17,7 +17,7 @@ void setup() {
 
 void loop() {
     mouthLoop();
-    //microphoneLoop();
+    microphoneLoop();
     //jokesLoop();
     //movementsLoop();
     volumeButtonsLoop();
