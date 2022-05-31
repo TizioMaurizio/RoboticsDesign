@@ -3,14 +3,14 @@
 
 
 void jokesSetup(){
-  strcpy(joke, "Hello");
+  //strcpy(joke, "Hello");
 }
 
 void jokesLoop(){
   if(speak){
     speak = false;
     if(strcmp(joke,"")){
-      player.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
+      //player.playMp3Folder(4); //play specific mp3 in SD:/MP3/0004.mp3; File Name(0~65535)
       strcpy(joke, "");
     }
   }

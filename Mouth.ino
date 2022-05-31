@@ -76,22 +76,35 @@ void mouthLoop(){
   //if(analogValue<600){
     speaking = true;
   }
-  if(currTime - prevTime >= 100){
-    if(speaking){
-      if(closing == false){
-        mouth.write(85-maxMouthAngle);
-        closing = true;
-       }
-      else 
-        if(closing == true){
-          mouth.write(85);
-          closing = false;
+  if(MOUTH_MODE = 0){
+    if(currTime - prevTime >= 100){
+      if(speaking){
+        if(closing == false){
+          mouth.write(85-maxMouthAngle);
+          closing = true;
          }
+        else 
+          if(closing == true){
+            mouth.write(85);
+            closing = false;
+           }
+      }
+      else
+        mouth.write(85);
+      prevTime = currTime;
+      speaking = false;
     }
-    else
-      mouth.write(85);
-    prevTime = currTime;
-    speaking = false;
+  }
+  if(MOUTH_MODE = 1){
+    if(currTime - prevTime >= 100){
+      if(speaking){
+        mouth.write(85-maxMouthAngle);
+      }
+      else
+        mouth.write(85);
+      prevTime = currTime;
+      speaking = false;
+    }
   }
 }
      
